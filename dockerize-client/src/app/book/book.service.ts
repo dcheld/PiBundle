@@ -16,17 +16,17 @@ export class BookService {
 
     // GET
     getBooks() {
-        return this.http.get(this.endpointUrl);
+        return this.http.get<Book[]>(this.endpointUrl);
     }
 
     // GET
     getBook(id: number) {
         const url = `${this.endpointUrl}/${id}`;
-        return this.http.get(url);
+        return this.http.get<Book>(url);
     }
 
     // POST
     addBook(book: Book) {
-        return this.http.post(this.endpointUrl, book, httpOptions);
+        return this.http.post<Book>(this.endpointUrl, book, httpOptions);
     }
 }
