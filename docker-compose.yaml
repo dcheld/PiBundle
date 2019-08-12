@@ -1,0 +1,17 @@
+version: '3.6'
+
+services:
+  dockerize:
+    image: dockerize
+    build:
+      context: ./Dockerize
+      # dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+  angular:
+    image: angular
+    build:
+      context: .
+      dockerfile: dockerize-client/Dockerfile
+    ports:
+      - "81:80"
