@@ -21,7 +21,7 @@ export class CreateComponent implements OnInit {
     if (!title) { return; }
 
     const newBook: Book = { title, author } as Book;
-    this.bookService.addBook(newBook);
+    this.bookService.addBook(newBook).subscribe();
   }
 
 }
