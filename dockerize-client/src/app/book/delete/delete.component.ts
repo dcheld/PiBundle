@@ -4,11 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { BookService } from '../book.service';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
+  selector: 'app-delete',
+  templateUrl: './delete.component.html',
+  styleUrls: ['./delete.component.css']
 })
-export class DetailComponent implements OnInit {
+export class DeleteComponent implements OnInit {
   book: Book;
 
   constructor(
@@ -20,9 +20,13 @@ export class DetailComponent implements OnInit {
     this.getBook();
   }
 
-  getBook(): void{
+  getBook(): void {
     this.bookService.getBook(this.route.snapshot.params['id'])
       .subscribe(book => this.book = book);
+  }
+
+  delete(book: Book): void {
+    this.bookService.deleteBook(book.id);
   }
 
 }

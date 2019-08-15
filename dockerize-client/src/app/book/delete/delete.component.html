@@ -1,7 +1,9 @@
 <br />
 <br />
 
-<h2>Detail</h2>
+<h2>Delete</h2>
+
+<h4>Are you sure you want to delete this?</h4>
 
 <br />
 
@@ -18,13 +20,14 @@
             <dt>Author</dt>
             <dd>{{ book.author }}</dd>
         </dl>
+
+        <br />
+
+        <div class="form-group">
+            <button class="btn btn-primary" (click)="delete(book)">Delete</button> |
+            <a href="/book">Back</a>
+        </div>
+
     </div>
 
 </div>
-
-<br />
-
-<p>
-    <a [routerLink]="['/book/edit', book.id]">Edit</a> |
-    <a href="/book">Back</a>
-</p>

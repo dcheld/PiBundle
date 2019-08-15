@@ -1,0 +1,27 @@
+<br />
+<br />
+
+<h2>New</h2>
+
+<br />
+
+<form>
+    <div class="form-group">
+        <label>Title
+            <input #titleInput placeholder="Title" class="form-control">
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Author
+            <input #authorInput placeholder="Author" class="form-control">
+        </label>
+    </div>
+    <br />
+    <button (click)="add(titleInput.value, authorInput.value);" class="btn btn-primary">Submit</button>
+</form>
+
+<br />
+
+<p>
+    <a href="/book">Back</a>
+</p>

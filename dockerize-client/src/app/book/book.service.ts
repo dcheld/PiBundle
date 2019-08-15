@@ -29,4 +29,15 @@ export class BookService {
     addBook(book: Book) {
         return this.http.post<Book>(this.endpointUrl, book, httpOptions);
     }
+
+    // DELETE
+    deleteBook(id: number) {
+        const url = `${this.endpointUrl}/${id}`;
+        return this.http.delete(url, httpOptions);
+    }
+
+    // PUT
+    updateBook(book: Book) {
+        return this.http.put<Book>(this.endpointUrl, book, httpOptions);
+    }
 }

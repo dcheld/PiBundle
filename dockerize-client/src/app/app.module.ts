@@ -9,6 +9,10 @@ import { FooterComponent } from './footer/footer.component';
 import { BookComponent } from './book/book.component';
 import { DetailComponent } from './book/detail/detail.component';
 import { BookService } from './book/book.service';
+import { CreateComponent } from './book/create/create.component';
+import { DeleteComponent } from './book/delete/delete.component';
+import { EditComponent } from './book/edit/edit.component';
+import { IndexComponent } from './book/index/index.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { BookService } from './book/book.service';
     NavbarComponent,
     FooterComponent,
     BookComponent,
-    DetailComponent
+    DetailComponent,
+    CreateComponent,
+    DeleteComponent,
+    EditComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
