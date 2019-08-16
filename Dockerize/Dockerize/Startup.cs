@@ -31,7 +31,7 @@ namespace Dockerize
             services.AddCors();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
+                options.UseNpgsql(Configuration.GetConnectionString("PostgresConnection")));
 
             services.AddSwaggerGen(options =>
             {
@@ -51,7 +51,7 @@ namespace Dockerize
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseCors(options => options.AllowAnyOrigin());
+            app.UseCors(options => options.AllowAnyOrigin());
 
             app.UseMvc();
 

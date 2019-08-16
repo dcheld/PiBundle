@@ -4,7 +4,10 @@ import { Book } from './book';
 
 const httpOptions = {
     headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, PUT, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     })
 };
 
@@ -27,7 +30,7 @@ export class BookService {
 
     // POST
     addBook(book: Book) {
-        return this.http.post<Book>(this.endpointUrl, book, httpOptions);
+        return this.http.post<Book>(this.endpointUrl, book);
     }
 
     // DELETE
