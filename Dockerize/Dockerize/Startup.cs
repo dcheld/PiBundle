@@ -51,7 +51,7 @@ namespace Dockerize
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(options => options.AllowAnyOrigin());
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseMvc();
 

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../book';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../book.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-edit',
@@ -9,11 +10,13 @@ import { BookService } from '../book.service';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  book: Book;
+  id: number;
+  book$: Observable<Book>;
 
   constructor(
     private route: ActivatedRoute,
-    private bookService: BookService
+    private bookService: BookService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -21,12 +24,14 @@ export class EditComponent implements OnInit {
   }
 
   getBook(): void{
-    this.bookService.getBook(this.route.snapshot.params['id'])
-      .subscribe(book => this.book = book);
+    this.id = this.route.snapshot.params['id'];
+    this.book$ = this.bookService.getBook(this.id);
   }
 
   update(book) {
-    this.bookService.updateBook(book);
+    this.bookService
+      .updateBook(this.id, book)
+      .subscribe(() => this.router.navigate(['/book']));
   }
 
 }

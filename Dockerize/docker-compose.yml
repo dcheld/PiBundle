@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  dockerize:
+    image: ${DOCKER_REGISTRY-}dockerize
+    build:
+      context: .
+      dockerfile: Dockerize/Dockerfile
+    depends_on:
+      - sqldata
+
+  sqldata:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "Password"
+    ports:
+      - "15432:15432"
+    volumes:
+      - data:/var/lib/postgresql/data 
+    
+volumes:
+  data:

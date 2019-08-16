@@ -5,21 +5,21 @@
 
 <br />
 
-<form class="col-md-6">
+<form class="col-md-6" *ngIf="book$ | async; let book">
     <div class="form-group">
         <label for="titleInput">Title</label>
-        <input type="text" class="form-control" id="titleInput" placeholder="Title" value="{{ book.title }}">
+        <input type="text" class="form-control" id="titleInput" #titleInput placeholder="Title" value="{{ book.title }}">
     </div>
     <div class="form-group">
         <label for="authorInput">Author</label>
-        <input type="text" class="form-control" id="authorInput" placeholder="Author" value="{{ book.author }}">
+        <input type="text" class="form-control" id="authorInput" #authorInput placeholder="Author" value="{{ book.author }}">
     </div>
     <br />
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-primary" (click)="update({id:book.id, title: titleInput.value, author: authorInput.value })">Save</button>
 </form>
 
 <br />
 
 <p>
-    <a href="/book">Back</a>
+    <a routerLink="/book">Back</a>
 </p>
