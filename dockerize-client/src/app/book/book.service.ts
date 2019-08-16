@@ -13,7 +13,7 @@ const httpOptions = {
 
 @Injectable()
 export class BookService {
-    endpointUrl = 'http://localhost:57877/api/book';
+    endpointUrl = 'http://192.168.0.101:57877/api/book';
 
     constructor(private http: HttpClient) { }
 
