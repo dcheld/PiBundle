@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../book';
 import { BookService } from '../book.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -9,7 +10,8 @@ import { BookService } from '../book.service';
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -21,7 +23,7 @@ export class CreateComponent implements OnInit {
     if (!title) { return; }
 
     const newBook: Book = { title, author } as Book;
-    this.bookService.addBook(newBook).subscribe();
+    this.bookService.addBook(newBook).subscribe(() => this.router.navigate(['/book']));
   }
 
 }

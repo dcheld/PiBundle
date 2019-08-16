@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../book';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from '../book.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-detail',

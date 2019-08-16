@@ -53,7 +53,7 @@ namespace Dockerize.Controllers
 
         // PUT api/Book/5
         [HttpPut("{id}")]
-        public ActionResult<Book> Put(int id, Book book)
+        public ActionResult<Book> Put(int id, [FromBody]Book book)
         {
             if (id != book.Id)
             {

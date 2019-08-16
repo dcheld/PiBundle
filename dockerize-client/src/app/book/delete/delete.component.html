@@ -9,7 +9,7 @@
 
 <div class="row">
 
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="book$ | async; let book">
         <h4>Book</h4>
         <hr />
         <dl>
@@ -25,7 +25,7 @@
 
         <div class="form-group">
             <button class="btn btn-primary" (click)="delete(book)">Delete</button> |
-            <a href="/book">Back</a>
+            <a routerLink="/book">Back</a>
         </div>
 
     </div>
