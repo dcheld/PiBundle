@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../book';
 import { BookService } from '../book.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-index',
@@ -8,7 +9,7 @@ import { BookService } from '../book.service';
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
-  books: Book[];
+  books$: Observable<Book[]>;
 
   constructor(private bookService: BookService) { }
 
@@ -17,8 +18,7 @@ export class IndexComponent implements OnInit {
   }
 
   getBooks(): void {
-    this.bookService.getBooks()
-      .subscribe(books => this.books = books);
+    this.books$ = this.bookService.getBooks();
   }
 
 }

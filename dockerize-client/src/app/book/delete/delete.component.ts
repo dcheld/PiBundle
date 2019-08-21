@@ -3,6 +3,7 @@ import { Book } from '../book';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../book.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-delete',
@@ -23,11 +24,15 @@ export class DeleteComponent implements OnInit {
   }
 
   getBook(): void {
-    this.book$ = this.bookService.getBook(this.route.snapshot.params['id']);
+    this.book$ = this.route.data.pipe(
+      map((data: { book: Book }) => data.book)
+    );
   }
 
   delete(book: Book): void {
-    this.bookService.deleteBook(book.id).subscribe(() => this.router.navigate(['/book']));
+    this.bookService
+      .deleteBook(book.id)
+      .subscribe(() => this.router.navigate(['/book']));
   }
 
 }

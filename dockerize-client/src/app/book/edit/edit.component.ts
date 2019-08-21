@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Book } from '../book';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../book.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit',
@@ -20,12 +21,20 @@ export class EditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.paramMapId();
     this.getBook();
   }
 
-  getBook(): void{
-    this.id = this.route.snapshot.params['id'];
-    this.book$ = this.bookService.getBook(this.id);
+  private paramMapId() {
+    this.route.paramMap.subscribe(paramMap => {
+      this.id = +paramMap.get('id');
+    });
+  }
+
+  getBook() {
+    this.book$ = this.route.data.pipe(
+      map((data: { book: Book }) => data.book)
+    );
   }
 
   update(book) {
@@ -33,5 +42,4 @@ export class EditComponent implements OnInit {
       .updateBook(this.id, book)
       .subscribe(() => this.router.navigate(['/book']));
   }
-
 }

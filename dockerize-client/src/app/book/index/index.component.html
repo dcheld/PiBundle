@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let book of books">
+        <tr *ngFor="let book of books$ | async">
             <th scope="row">{{ book.id }}</th>
             <td>{{ book.title }}</td>
             <td>{{ book.author }}</td>
