@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Book } from './book';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -13,7 +14,7 @@ const httpOptions = {
 
 @Injectable()
 export class BookService {
-    endpointUrl = 'http://192.168.0.101:57877/api/book';
+    endpointUrl = `${environment.apiUrl}/book`;
 
     constructor(private http: HttpClient) { }
 
